@@ -90,16 +90,22 @@ public:
                 }
         }
     }
-    void shorthand(int where_x, int where_y,const std::vector<std::vector<char>>& word)
+    void shorthand(int power,int where_x, int where_y,const std::vector<std::string>& word)
     {
-        if(where_x+word.size()<m_width && where_y+word[0].size()<m_height) {
-            for (int i = where_y + word[0]; i < where_y.size(); i++) {
-                for (int j = where_y; j < where_x + word[i-where_y].size(); j++) {
-                    if (word[i-where_y][j-where_x] != '0') {
-                        pixels[i][j] = {0, 0, 0};
+        int t=0;
+        if(where_x+word[0].size()<m_width && where_y+word.size()<m_height) {
+            for(int i=where_y;i<where_y+word.size();i++)
+                for(int j = where_x;j<where_x+word[0].size();j++)
+                {
+                    if(word[word.size()-(i-where_y)-1][j-where_x]!='0') {
+                        if(pixels[i][j].b>=pixels[i][j].g && pixels[i][j].b>=pixels[i][j].r)
+                            pixels[i][j].b-=power;
+                        else if(pixels[i][j].g>=pixels[i][j].r)
+                            pixels[i][j].g-=power;
+                        else
+                            pixels[i][j].r-=power;
                     }
                 }
-            }
         }
     }
     void filter(char color,char up_or_down,int power)
