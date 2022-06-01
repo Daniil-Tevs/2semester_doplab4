@@ -13,7 +13,7 @@ int main() {
         word.push_back(tmp);
     }
     bmp image("../examples/example1.bmp");
-    image.shorthand(20,1500,1500,word);
+    image.shorthand(30,1000,1000,word);
     image.write("../output.bmp");
     return 0;
 }
